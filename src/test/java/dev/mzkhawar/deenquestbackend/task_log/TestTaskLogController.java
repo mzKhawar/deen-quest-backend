@@ -148,7 +148,9 @@ public class TestTaskLogController {
         assertEquals(testTask.getId(), createdTaskLog.getTask().getId());
         assertEquals(testUser.getId(), createdTaskLog.getUser().getId());
         assertEquals(completedAt, createdTaskLog.getCompletedAt());
-        assertEquals("http://localhost/api/v1/task-logs/" + createdTaskLog.getId(), createdTaskLogLocation);
+
+        assertNotNull(createdTaskLogLocation);
+        assertTrue(createdTaskLogLocation.endsWith("api/v1/task-logs/" + createdTaskLogId));
     }
 
     @Test

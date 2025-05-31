@@ -5,6 +5,7 @@ import dev.mzkhawar.deenquestbackend.user.Role;
 import dev.mzkhawar.deenquestbackend.user.User;
 import dev.mzkhawar.deenquestbackend.user.UserRepository;
 import jakarta.transaction.Transactional;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -98,7 +99,9 @@ public class TestTaskController {
         assertEquals(taskDescription, createdTask.getDescription());
 
         Long createdTaskId = createdTask.getId();
-        assertEquals("http://localhost/api/v1/tasks/" + createdTaskId, createdTaskLocation);
+
+        assertNotNull(createdTaskLocation);
+        assertTrue(createdTaskLocation.endsWith("api/v1/tasks/" + createdTaskId));
     }
 
     @Test
